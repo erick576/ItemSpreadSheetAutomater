@@ -26,6 +26,7 @@ while keep_Adding == "Yes" or keep_Adding == 'yes':
         new_trans_id.value = transaction_date
         new_prod_id.value = product_id
         new_price.value = price
+        sheet.cell(row_counter, 4).value = price * 1.13
         add_or_stop = input('Will you keep adding or will you stop? (Yes or No)')
         isAdd = add_or_stop
         keep_Adding = add_or_stop
@@ -46,11 +47,4 @@ sheet.add_chart(chart, 'e2')
 # Save the info onto the excel sheet
 wb.save('transactions.xlsx')
 
-# Loop around all the price values and then calculate and store the cost with tax
-for row in range(2, sheet.max_row + 1):
-    corrected_price = sheet.cell(row, 3).value * 1.13
-    corrected_price_cell = sheet.cell(row, 4)
-    corrected_price_cell.value = corrected_price
 
-# Save the info on the excel sheet
-wb.save('transactions.xlsx')
